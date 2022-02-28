@@ -63,7 +63,7 @@ public class CalculatorTest {
     calc.addValue(1);
     calc.addValue(2);
     calc.performSubtraction();
-    //calc.reset();
+    calc.reset();
 
     assertThat(calc.text(), is(""));
     assertThat(calc.getVal1(), is(0));
