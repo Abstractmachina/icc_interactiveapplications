@@ -56,4 +56,17 @@ public class CalculatorTest {
 
     assertThat(calc.text(), is("-1"));
   }
+
+  @Test
+  public void resetEverything(){
+    Calculator calc = new Calculator();
+    calc.addValue(1);
+    calc.addValue(2);
+    calc.performSubtraction();
+    //calc.reset();
+
+    assertThat(calc.text(), is(""));
+    assertThat(calc.getVal1(), is(0));
+    assertThat(calc.getVal2(), is(0));
+  }
 }
