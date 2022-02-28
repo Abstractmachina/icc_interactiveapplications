@@ -33,8 +33,8 @@ public class CalculatorTest {
     calc.addValue(2);
     calc.addValue(3);
 
-    assertThat(calc.getVal1(), is(1));
-    assertThat(calc.getVal2(), is(2));
+    assertThat(calc.getVal1(), is(2));
+    assertThat(calc.getVal2(), is(3));
   }
 
 }
