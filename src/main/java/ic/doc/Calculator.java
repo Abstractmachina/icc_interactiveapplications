@@ -6,7 +6,7 @@ public class Calculator {
   private int val2 = 0;
   private String displayTxt = "";
 
-  Calculator() {}
+  public Calculator() {}
 
   public void addValue(int v) {
     String vs = Integer.toString(v);
@@ -46,4 +46,6 @@ public class Calculator {
   public String text() {
     return displayTxt;
   }
+  public int getVal1() {return val1;}
+  public int getVal2() { return val2;}
 }
