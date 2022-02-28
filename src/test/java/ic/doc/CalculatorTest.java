@@ -42,7 +42,7 @@ public class CalculatorTest {
     Calculator calc = new Calculator();
     calc.addValue(1);
     calc.addValue(2);
-    //calc.performAddition();
+    calc.performAddition();
 
     assertThat(calc.text(), is("3"));
   }
