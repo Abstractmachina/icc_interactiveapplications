@@ -1,11 +1,10 @@
-package ic;
+package ic.doc;
 
-import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
 
 import ic.doc.Calculator;
 import org.junit.Test;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.Is.is;
 
 public class CalculatorTest {
 
@@ -16,6 +15,7 @@ public class CalculatorTest {
 
     assertThat(calc.getVal1(), is(1));
   }
+
   @Test
   public void addingSecondValueStoresInCorrectOrder() {
     Calculator calc = new Calculator();
@@ -37,4 +37,13 @@ public class CalculatorTest {
     assertThat(calc.getVal2(), is(3));
   }
 
+  @Test
+  public void calculateSumOfTwoNumbers() {
+    Calculator calc = new Calculator();
+    calc.addValue(1);
+    calc.addValue(2);
+    //calc.performAddition();
+
+    assertThat(calc.text(), is("3"));
+  }
 }
