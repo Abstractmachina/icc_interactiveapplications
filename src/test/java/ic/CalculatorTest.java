@@ -19,11 +19,11 @@ public class CalculatorTest {
   @Test
   public void addingSecondValueStoresInCorrectOrder() {
     Calculator calc = new Calculator();
-   // calc.addValue(1);
-    //calc.addValue(2);
+    calc.addValue(1);
+    calc.addValue(2);
 
     assertThat(calc.getVal1(), is(1));
-    //assertThat(calc.getVal2(), is(2));
+    assertThat(calc.getVal2(), is(2));
   }
 
 }
