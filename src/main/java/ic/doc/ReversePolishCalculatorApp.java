@@ -9,11 +9,10 @@ import javax.swing.JTextField;
 import javax.swing.SingleSelectionModel;
 import javax.swing.WindowConstants;
 
+
 public class ReversePolishCalculatorApp {
 
-  private int val1 = 0;
-  private int val2 = 0;
-  private String displayTxt = "";
+  private Calculator calculator = new Calculator();
 
   private JTextField textField;
 
@@ -21,40 +20,10 @@ public class ReversePolishCalculatorApp {
     new ReversePolishCalculatorApp().display();
   }
 
-  private void addValue(int v) {
-    String vs = Integer.toString(v);
-    if (val1 == 0) {
-      val1 = v;
-      displayTxt += vs;
-      displayTxt += " ";
-    }
-    else {
-      if (val2 == 0) {
-        val2 = v;
-        displayTxt += vs;
-        displayTxt += " ";
-      }
-      else {
-        val1 = val2;
-        val2 = v;
-        displayTxt = String.format("%d %d ", val1, val2);
-      }
-    }
-  }
 
-  private void addToDisplay(int value) {
-    displayTxt += Integer.toString(value);
-    displayTxt += " ";
-  }
-
-  private void reset() {
-    val1 = 0;
-    val2 = 0;
-    displayTxt = "";
-  }
 
   private void clear() {
-    reset();
+    calculator.reset();
     textField.setText("");
   }
 
@@ -80,8 +49,8 @@ public class ReversePolishCalculatorApp {
         new ActionListener() {
           @Override
           public void actionPerformed(ActionEvent e) {
-            addValue(1);
-            textField.setText(displayTxt);
+            calculator.addValue(1);
+            textField.setText(calculator.text());
           }
         });
 
@@ -89,8 +58,8 @@ public class ReversePolishCalculatorApp {
         new ActionListener() {
           @Override
           public void actionPerformed(ActionEvent e) {
-            addValue(2);
-            textField.setText(displayTxt);
+            calculator.addValue(2);
+            textField.setText(calculator.text());
           }
         });
 
@@ -98,8 +67,8 @@ public class ReversePolishCalculatorApp {
         new ActionListener() {
           @Override
           public void actionPerformed(ActionEvent e) {
-            addValue(3);
-            textField.setText(displayTxt);
+            calculator.addValue(3);
+            textField.setText(calculator.text());
           }
         });
 
@@ -107,8 +76,8 @@ public class ReversePolishCalculatorApp {
         new ActionListener() {
           @Override
           public void actionPerformed(ActionEvent e) {
-            addValue(4);
-            textField.setText(displayTxt);
+            calculator.addValue(4);
+            textField.setText(calculator.text());
           }
         });
 
@@ -116,20 +85,18 @@ public class ReversePolishCalculatorApp {
         new ActionListener() {
           @Override
           public void actionPerformed(ActionEvent e) {
-            int sum = val1+val2;
-            displayTxt = Integer.toString(sum);
-            textField.setText(displayTxt);
-            reset();
+            calculator.performAddition();
+            textField.setText(calculator.text());
+            calculator.reset();
           }
         });
     b_minus.addActionListener(
         new ActionListener() {
           @Override
           public void actionPerformed(ActionEvent e) {
-            int diff = val1-val2;
-            displayTxt = Integer.toString(diff);
-            textField.setText(displayTxt);
-            reset();
+            calculator.performSubtraction();
+            textField.setText(calculator.text());
+            calculator.reset();
           }
         });
 
@@ -156,4 +123,6 @@ public class ReversePolishCalculatorApp {
     frame.setVisible(true);
     frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
   }
+
+
 }
