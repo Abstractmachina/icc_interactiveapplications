@@ -46,4 +46,14 @@ public class CalculatorTest {
 
     assertThat(calc.text(), is("3"));
   }
+
+  @Test
+  public void calculateDifferenceOfTwoNumbers() {
+    Calculator calc = new Calculator();
+    calc.addValue(1);
+    calc.addValue(2);
+//    calc.performAddition();
+
+    assertThat(calc.text(), is("-1"));
+  }
 }
