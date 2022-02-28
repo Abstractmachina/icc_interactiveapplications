@@ -12,7 +12,7 @@ public class CalculatorTest {
   @Test
   public void addingFirstValueStoresInCorrectOrder() {
     Calculator calc = new Calculator();
-    //calc.addValue(1);
+    calc.addValue(1);
 
     assertThat(calc.getVal1(), is(1));
   }
