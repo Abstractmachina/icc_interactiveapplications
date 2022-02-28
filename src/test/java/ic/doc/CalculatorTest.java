@@ -52,7 +52,7 @@ public class CalculatorTest {
     Calculator calc = new Calculator();
     calc.addValue(1);
     calc.addValue(2);
-//    calc.performAddition();
+    calc.performSubtraction();
 
     assertThat(calc.text(), is("-1"));
   }
