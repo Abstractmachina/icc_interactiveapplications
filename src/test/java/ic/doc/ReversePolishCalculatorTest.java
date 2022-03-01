@@ -3,69 +3,103 @@ package ic.doc;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
+import org.jmock.Expectations;
+import org.jmock.integration.junit4.JUnitRuleMockery;
+import org.junit.Rule;
 import org.junit.Test;
 
 public class ReversePolishCalculatorTest {
 
+  @Rule
+  public JUnitRuleMockery context = new JUnitRuleMockery();
+  private final Updatable observer = context.mock(Updatable.class);
+
+
+  private final ReversePolishCalculator calc = new ReversePolishCalculator(observer);
+
   @Test
   public void addingFirstValueStoresInCorrectOrder() {
-    ReversePolishCalculator calc = new ReversePolishCalculator();
+
+    context.checking(new Expectations() {{
+      allowing(observer).update(calc);
+    }});
+
+    calc.reset();
     calc.addValue(1);
 
-    assertThat(calc.getVal1(), is(1));
+    assertThat(calc.stack().size(), is(1));
+    assertThat(calc.stack().peek(), is(1));
   }
 
   @Test
   public void addingSecondValueStoresInCorrectOrder() {
-    ReversePolishCalculator calc = new ReversePolishCalculator();
+    context.checking(new Expectations() {{
+      allowing(observer).update(calc);
+    }});
+
+    calc.reset();
     calc.addValue(1);
     calc.addValue(2);
 
-    assertThat(calc.getVal1(), is(1));
-    assertThat(calc.getVal2(), is(2));
+    assertThat(calc.stack().size(), is(2));
+    assertThat(calc.stack().peek(), is(2));
   }
 
   @Test
   public void addingSubsequentValuesStoreInCorrectOrder() {
-    ReversePolishCalculator calc = new ReversePolishCalculator();
+    context.checking(new Expectations() {{
+      allowing(observer).update(calc);
+    }});
+
+    calc.reset();
     calc.addValue(1);
     calc.addValue(2);
     calc.addValue(3);
 
-    assertThat(calc.getVal1(), is(2));
-    assertThat(calc.getVal2(), is(3));
+    assertThat(calc.stack().size(), is(3));
+    assertThat(calc.stack().peek(), is(3));
   }
 
   @Test
   public void calculateSumOfTwoNumbers() {
-    ReversePolishCalculator calc = new ReversePolishCalculator();
+    context.checking(new Expectations() {{
+      allowing(observer).update(calc);
+    }});
+
+    calc.reset();
     calc.addValue(1);
     calc.addValue(2);
     calc.performAddition();
 
-    assertThat(calc.text(), is("3"));
+    assertThat(calc.stack().peek(), is(3));
   }
 
   @Test
   public void calculateDifferenceOfTwoNumbers() {
-    ReversePolishCalculator calc = new ReversePolishCalculator();
+    context.checking(new Expectations() {{
+      allowing(observer).update(calc);
+    }});
+
+    calc.reset();
     calc.addValue(1);
     calc.addValue(2);
     calc.performSubtraction();
 
-    assertThat(calc.text(), is("-1"));
+    assertThat(calc.stack().peek(), is(-1));
   }
 
   @Test
   public void resetEverything(){
-    ReversePolishCalculator calc = new ReversePolishCalculator();
+    context.checking(new Expectations() {{
+      allowing(observer).update(calc);
+    }});
+
+    calc.reset();
     calc.addValue(1);
     calc.addValue(2);
-    calc.performSubtraction();
     calc.reset();
 
     assertThat(calc.text(), is(""));
-    assertThat(calc.getVal1(), is(0));
-    assertThat(calc.getVal2(), is(0));
+    assertThat(calc.stack().size(), is(0));
   }
 }

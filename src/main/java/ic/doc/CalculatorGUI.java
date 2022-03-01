@@ -11,7 +11,7 @@ import javax.swing.WindowConstants;
 
 public class CalculatorGUI implements Updatable {
 
-  private final ReversePolishCalculator calculator = new ReversePolishCalculator();
+  private final ReversePolishCalculator calculator = new ReversePolishCalculator(this);
 
   private final JFrame frame;
   private final JPanel panel;
