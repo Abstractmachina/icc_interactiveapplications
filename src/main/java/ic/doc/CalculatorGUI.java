@@ -6,44 +6,44 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.SingleSelectionModel;
 import javax.swing.WindowConstants;
 
 
-public class ReversePolishCalculatorApp {
+public class CalculatorGUI implements Updatable {
 
-  private Calculator calculator = new Calculator();
+  private final ReversePolishCalculator calculator = new ReversePolishCalculator();
 
-  private JTextField textField;
+  private final JFrame frame;
+  private final JPanel panel;
 
-  public static void main(String[] args) {
-    new ReversePolishCalculatorApp().display();
-  }
+  private final JTextField textField;
+
+  private final JButton b_one;
+  private final JButton b_two;
+  private final JButton b_three;
+  private final JButton b_four;
+  private final JButton b_plus;
+  private final JButton b_minus;
+  private final JButton b_clear;
 
 
 
-  private void clear() {
-    calculator.reset();
-    textField.setText("");
-  }
+  public CalculatorGUI() {
 
-  private void display() {
-
-    JFrame frame = new JFrame("Reverse Polish Calculator");
+    frame = new JFrame("Reverse Polish Calculator");
     frame.setSize(400, 300);
 
-    JPanel panel = new JPanel();
-
-    JButton b_one = new JButton("1");
-    JButton b_two = new JButton("2");
-    JButton b_three = new JButton("3");
-    JButton b_four = new JButton("4");
-    JButton b_plus = new JButton("+");
-    JButton b_minus = new JButton("-");
-    JButton b_clear = new JButton("clear");
-
+    panel = new JPanel();
 
     textField = new JTextField(10);
+
+    b_one = new JButton("1");
+    b_two = new JButton("2");
+    b_three = new JButton("3");
+    b_four = new JButton("4");
+    b_plus = new JButton("+");
+    b_minus = new JButton("-");
+    b_clear = new JButton("clear");
 
     b_one.addActionListener(
         new ActionListener() {
@@ -122,7 +122,20 @@ public class ReversePolishCalculatorApp {
 
     frame.setVisible(true);
     frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+    calculator.addObserver(this);
+
   }
+
+  public static void main(String[] args) {
+    CalculatorGUI gui = new CalculatorGUI();
+  }
+
+  private void clear() {
+    calculator.reset();
+    textField.setText("");
+  }
+
 
 
 }

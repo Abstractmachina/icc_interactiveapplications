@@ -1,12 +1,14 @@
 package ic.doc;
 
-public class Calculator {
+public class ReversePolishCalculator {
 
   private int val1 = 0;
   private int val2 = 0;
   private String displayTxt = "";
 
-  public Calculator() {}
+  private Updatable observer;
+
+  public ReversePolishCalculator() {}
 
   public void addValue(int v) {
     String vs = Integer.toString(v);
@@ -48,4 +50,8 @@ public class Calculator {
   }
   public int getVal1() {return val1;}
   public int getVal2() { return val2;}
+
+  public void addObserver(Updatable observer) {
+    this.observer = observer;
+  }
 }

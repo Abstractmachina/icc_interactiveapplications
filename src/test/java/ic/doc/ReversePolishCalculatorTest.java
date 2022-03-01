@@ -3,14 +3,13 @@ package ic.doc;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
-import ic.doc.Calculator;
 import org.junit.Test;
 
-public class CalculatorTest {
+public class ReversePolishCalculatorTest {
 
   @Test
   public void addingFirstValueStoresInCorrectOrder() {
-    Calculator calc = new Calculator();
+    ReversePolishCalculator calc = new ReversePolishCalculator();
     calc.addValue(1);
 
     assertThat(calc.getVal1(), is(1));
@@ -18,7 +17,7 @@ public class CalculatorTest {
 
   @Test
   public void addingSecondValueStoresInCorrectOrder() {
-    Calculator calc = new Calculator();
+    ReversePolishCalculator calc = new ReversePolishCalculator();
     calc.addValue(1);
     calc.addValue(2);
 
@@ -28,7 +27,7 @@ public class CalculatorTest {
 
   @Test
   public void addingSubsequentValuesStoreInCorrectOrder() {
-    Calculator calc = new Calculator();
+    ReversePolishCalculator calc = new ReversePolishCalculator();
     calc.addValue(1);
     calc.addValue(2);
     calc.addValue(3);
@@ -39,7 +38,7 @@ public class CalculatorTest {
 
   @Test
   public void calculateSumOfTwoNumbers() {
-    Calculator calc = new Calculator();
+    ReversePolishCalculator calc = new ReversePolishCalculator();
     calc.addValue(1);
     calc.addValue(2);
     calc.performAddition();
@@ -49,7 +48,7 @@ public class CalculatorTest {
 
   @Test
   public void calculateDifferenceOfTwoNumbers() {
-    Calculator calc = new Calculator();
+    ReversePolishCalculator calc = new ReversePolishCalculator();
     calc.addValue(1);
     calc.addValue(2);
     calc.performSubtraction();
@@ -59,7 +58,7 @@ public class CalculatorTest {
 
   @Test
   public void resetEverything(){
-    Calculator calc = new Calculator();
+    ReversePolishCalculator calc = new ReversePolishCalculator();
     calc.addValue(1);
     calc.addValue(2);
     calc.performSubtraction();
