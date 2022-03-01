@@ -18,13 +18,13 @@ public class CalculatorGUI implements Updatable {
 
   private final JTextField textField;
 
-  private final JButton b_one;
-  private final JButton b_two;
-  private final JButton b_three;
-  private final JButton b_four;
-  private final JButton b_plus;
-  private final JButton b_minus;
-  private final JButton b_clear;
+  private final JButton bOne;
+  private final JButton bTwo;
+  private final JButton bThree;
+  private final JButton bFour;
+  private final JButton bPlus;
+  private final JButton bMinus;
+  private final JButton bClear;
 
 
 
@@ -37,15 +37,15 @@ public class CalculatorGUI implements Updatable {
 
     textField = new JTextField(10);
 
-    b_one = new JButton("1");
-    b_two = new JButton("2");
-    b_three = new JButton("3");
-    b_four = new JButton("4");
-    b_plus = new JButton("+");
-    b_minus = new JButton("-");
-    b_clear = new JButton("clear");
+    bOne = new JButton("1");
+    bTwo = new JButton("2");
+    bThree = new JButton("3");
+    bFour = new JButton("4");
+    bPlus = new JButton("+");
+    bMinus = new JButton("-");
+    bClear = new JButton("clear");
 
-    b_one.addActionListener(
+    bOne.addActionListener(
         new ActionListener() {
           @Override
           public void actionPerformed(ActionEvent e) {
@@ -54,7 +54,7 @@ public class CalculatorGUI implements Updatable {
           }
         });
 
-    b_two.addActionListener(
+    bTwo.addActionListener(
         new ActionListener() {
           @Override
           public void actionPerformed(ActionEvent e) {
@@ -63,7 +63,7 @@ public class CalculatorGUI implements Updatable {
           }
         });
 
-    b_three.addActionListener(
+    bThree.addActionListener(
         new ActionListener() {
           @Override
           public void actionPerformed(ActionEvent e) {
@@ -72,7 +72,7 @@ public class CalculatorGUI implements Updatable {
           }
         });
 
-    b_four.addActionListener(
+    bFour.addActionListener(
         new ActionListener() {
           @Override
           public void actionPerformed(ActionEvent e) {
@@ -81,26 +81,24 @@ public class CalculatorGUI implements Updatable {
           }
         });
 
-    b_plus.addActionListener(
+    bPlus.addActionListener(
         new ActionListener() {
           @Override
           public void actionPerformed(ActionEvent e) {
             calculator.performAddition();
             textField.setText(calculator.text());
-            calculator.reset();
           }
         });
-    b_minus.addActionListener(
+    bMinus.addActionListener(
         new ActionListener() {
           @Override
           public void actionPerformed(ActionEvent e) {
             calculator.performSubtraction();
             textField.setText(calculator.text());
-            calculator.reset();
           }
         });
 
-    b_clear.addActionListener(
+    bClear.addActionListener(
         new ActionListener() {
           @Override
           public void actionPerformed(ActionEvent e) {
@@ -108,13 +106,13 @@ public class CalculatorGUI implements Updatable {
           }
         });
 
-    panel.add(b_one);
-    panel.add(b_two);
-    panel.add(b_three);
-    panel.add(b_four);
-    panel.add(b_plus);
-    panel.add(b_minus);
-    panel.add(b_clear);
+    panel.add(bOne);
+    panel.add(bTwo);
+    panel.add(bThree);
+    panel.add(bFour);
+    panel.add(bPlus);
+    panel.add(bMinus);
+    panel.add(bClear);
 
     panel.add(textField);
 
@@ -127,13 +125,18 @@ public class CalculatorGUI implements Updatable {
 
   }
 
-  public static void main(String[] args) {
-    CalculatorGUI gui = new CalculatorGUI();
-  }
-
   private void clear() {
     calculator.reset();
     textField.setText("");
+  }
+
+  @Override
+  public void update(ReversePolishCalculator calculator){
+    textField.setText(calculator.text());
+  }
+
+  public static void main(String[] args) {
+    CalculatorGUI gui = new CalculatorGUI();
   }
 
 

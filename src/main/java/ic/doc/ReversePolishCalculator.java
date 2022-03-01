@@ -1,55 +1,57 @@
 package ic.doc;
 
+import java.util.Stack;
+
 public class ReversePolishCalculator {
 
-  private int val1 = 0;
-  private int val2 = 0;
   private String displayTxt = "";
+  private Stack<Integer> stack;
 
   private Updatable observer;
 
-  public ReversePolishCalculator() {}
+  public ReversePolishCalculator() {
+    stack = new Stack<Integer>();
+  }
 
   public void addValue(int v) {
-    String vs = Integer.toString(v);
-    if (val1 == 0) {
-      val1 = v;
-      displayTxt += vs;
-      displayTxt += " ";
-    } else {
-      if (val2 == 0) {
-        val2 = v;
-        displayTxt += vs;
-        displayTxt += " ";
-      } else {
-        val1 = val2;
-        val2 = v;
-        displayTxt = String.format("%d %d ", val1, val2);
-      }
-    }
+    stack.push(v);
+    stackToText();
+    observer.update(this);
+    System.out.print(stack);
   }
 
   public void performAddition() {
-    int sum = val1+val2;
-    displayTxt = Integer.toString(sum);
+    if (stack.size() <2) return;
+    stack.push(stack.pop() + stack.pop());
+    System.out.print(stack);
+    stackToText();
+  }
+
+  private void stackToText() {
+    displayTxt = "";
+    for (int val : stack) {
+      displayTxt += Integer.toString(val);
+      displayTxt += " ";
+    }
   }
 
   public void performSubtraction() {
-    int diff = val1-val2;
-    displayTxt = Integer.toString(diff);
+    if (stack.size() <2) return;
+    int subtrahend = stack.pop();
+    int minuend = stack.pop();
+    stack.push((minuend - subtrahend));
+    stackToText();
+    System.out.print(stack);
   }
 
   public void reset() {
-    val1 = 0;
-    val2 = 0;
+    stack.clear();
     displayTxt = "";
   }
 
   public String text() {
     return displayTxt;
   }
-  public int getVal1() {return val1;}
-  public int getVal2() { return val2;}
 
   public void addObserver(Updatable observer) {
     this.observer = observer;
