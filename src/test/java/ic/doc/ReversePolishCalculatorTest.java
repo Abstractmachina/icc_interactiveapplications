@@ -10,19 +10,20 @@ import org.junit.Test;
 
 public class ReversePolishCalculatorTest {
 
-  @Rule
-  public JUnitRuleMockery context = new JUnitRuleMockery();
+  @Rule public JUnitRuleMockery context = new JUnitRuleMockery();
   private final Updatable observer = context.mock(Updatable.class);
-
 
   private final ReversePolishCalculator calc = new ReversePolishCalculator(observer);
 
   @Test
   public void addingFirstValueStoresInCorrectOrder() {
 
-    context.checking(new Expectations() {{
-      allowing(observer).update(calc);
-    }});
+    context.checking(
+        new Expectations() {
+          {
+            allowing(observer).update(calc);
+          }
+        });
 
     calc.reset();
     calc.addValue(1);
@@ -33,9 +34,12 @@ public class ReversePolishCalculatorTest {
 
   @Test
   public void addingSecondValueStoresInCorrectOrder() {
-    context.checking(new Expectations() {{
-      allowing(observer).update(calc);
-    }});
+    context.checking(
+        new Expectations() {
+          {
+            allowing(observer).update(calc);
+          }
+        });
 
     calc.reset();
     calc.addValue(1);
@@ -47,9 +51,12 @@ public class ReversePolishCalculatorTest {
 
   @Test
   public void addingSubsequentValuesStoreInCorrectOrder() {
-    context.checking(new Expectations() {{
-      allowing(observer).update(calc);
-    }});
+    context.checking(
+        new Expectations() {
+          {
+            allowing(observer).update(calc);
+          }
+        });
 
     calc.reset();
     calc.addValue(1);
@@ -62,9 +69,12 @@ public class ReversePolishCalculatorTest {
 
   @Test
   public void calculateSumOfTwoNumbers() {
-    context.checking(new Expectations() {{
-      allowing(observer).update(calc);
-    }});
+    context.checking(
+        new Expectations() {
+          {
+            allowing(observer).update(calc);
+          }
+        });
 
     calc.reset();
     calc.addValue(1);
@@ -76,9 +86,12 @@ public class ReversePolishCalculatorTest {
 
   @Test
   public void calculateDifferenceOfTwoNumbers() {
-    context.checking(new Expectations() {{
-      allowing(observer).update(calc);
-    }});
+    context.checking(
+        new Expectations() {
+          {
+            allowing(observer).update(calc);
+          }
+        });
 
     calc.reset();
     calc.addValue(1);
@@ -89,10 +102,13 @@ public class ReversePolishCalculatorTest {
   }
 
   @Test
-  public void resetEverything(){
-    context.checking(new Expectations() {{
-      allowing(observer).update(calc);
-    }});
+  public void resetEverything() {
+    context.checking(
+        new Expectations() {
+          {
+            allowing(observer).update(calc);
+          }
+        });
 
     calc.reset();
     calc.addValue(1);
